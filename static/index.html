@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StockMaison V2</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <div><small>STOCK PARTAGÉ · MAISON</small><h1>StockMaison V2</h1><p>Le même stock sur le PC et le téléphone.</p></div>
+  <button id="scanOpen">📷 Scanner</button>
+</header>
+
+<main>
+  <section class="stats">
+    <div><span>Produits</span><b id="s1">0</b></div>
+    <div><span>Stock faible</span><b id="s2">0</b></div>
+    <div><span>À acheter</span><b id="s3">0</b></div>
+  </section>
+
+  <nav>
+    <button data-tab="stock" class="active">Stock</button>
+    <button data-tab="courses">Retour de courses</button>
+    <button data-tab="liste">Liste de courses</button>
+  </nav>
+
+  <section id="stock" class="tab active">
+    <div class="title"><h2>Mon stock</h2><input id="search" placeholder="Rechercher..."></div>
+    <div id="products" class="grid"></div>
+    <p id="empty">Aucun produit pour le moment.</p>
+  </section>
+
+  <section id="courses" class="tab">
+    <div class="title"><h2>Retour de courses</h2><button id="scanOpen2">📷 Scanner un produit</button></div>
+    <div id="preview"></div>
+    <form id="form">
+      <label>Code-barres <div class="inline"><input id="barcode" name="barcode" inputmode="numeric"><button type="button" id="lookup">Rechercher</button></div></label>
+      <label>Produit <input id="name" name="name" required></label>
+      <label>Marque <input id="brand" name="brand"></label>
+      <label>Catégorie <select id="category" name="category"><option>Alimentation</option><option>Boissons</option><option>Hygiène</option><option>Entretien</option><option>Maison</option><option>Autre</option></select></label>
+      <label>Quantité achetée <input name="quantity" type="number" value="1" min="0" step=".1"></label>
+      <label>Seuil minimum <input name="minimum" type="number" value="1" min="0" step=".1"></label>
+      <label>Quantité cible <input name="target_quantity" type="number" value="3" min="0" step=".1"></label>
+      <label>Unité <select id="unit" name="unit"><option>unité(s)</option><option>paquet(s)</option><option>bouteille(s)</option><option>boîte(s)</option><option>kg</option><option>L</option></select></label>
+      <input id="image_url" name="image_url" type="hidden">
+      <button class="primary full">Ajouter au stock</button>
+    </form>
+  </section>
+
+  <section id="liste" class="tab">
+    <div class="title"><h2>Liste de courses</h2><a href="/api/shopping-list.pdf">Télécharger PDF</a></div>
+    <div id="shopping"></div>
+  </section>
+</main>
+
+<dialog id="scanner">
+  <button id="close">✕</button>
+  <h2>Scanner un code-barres</h2>
+  <p id="warning">Sur une adresse HTTP locale, la caméra directe peut être bloquée. Le mode photo reste disponible.</p>
+  <div class="camera-row">
+    <label for="cameraSelect">Caméra</label>
+    <select id="cameraSelect">
+      <option value="">Détection des caméras...</option>
+    </select>
+  </div>
+
+  <div id="reader"></div>
+
+  <button id="startCamera" class="primary">Démarrer la caméra</button>
+  <label class="photo">Prendre une photo<input id="photo" type="file" accept="image/*" capture="environment"></label>
+  <div class="inline"><input id="manual" inputmode="numeric" placeholder="Ou saisir le code"><button id="manualGo">Valider</button></div>
+  <p id="status"></p>
+</dialog>
+
+<script src="/static/quagga.min.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
