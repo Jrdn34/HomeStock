@@ -16,9 +16,6 @@ python -m uvicorn app:app --host 0.0.0.0 --port 8000
 
 PC : `http://localhost:8000`
 
-Téléphone connecté à la même box : `http://IP_DU_PC:8000`
-
-Exemple : `http://192.168.1.138:8000`
 
 Le fichier `stockmaison.db` est créé automatiquement. C'est lui qui rend le stock commun à tous les appareils.
 
@@ -53,12 +50,6 @@ La V2.4 contient maintenant :
 ```
 
 dans cet ordre.
-
-Après `setup_scanner.ps1`, vérifier :
-`https://IP_DU_PC:8443/static/html5-qrcode.min.js`
-
-Si le navigateur affiche du JavaScript, la bibliothèque est bien servie.
-
 
 ## V2.5 — Diagnostic caméra
 
