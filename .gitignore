@@ -1,0 +1,14 @@
+# Certificats et clés (générés localement avec mkcert)
+*.pem
+*.key
+
+# Base de données locale
+*.db
+*.sqlite3
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
